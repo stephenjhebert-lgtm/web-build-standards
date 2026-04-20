@@ -31,18 +31,18 @@ Entry point for the skill: [`SKILL.md`](./SKILL.md).
 
 ## Brand registry
 
-| Brand | Project folder | Status |
-|---|---|---|
-| Reps & Reels | `~/Library/Mobile Documents/com~apple~CloudDocs/Claude/Projects/RepsReels/Reps and Reels` | In build |
-| Junk Gym Digital | `~/Library/Mobile Documents/com~apple~CloudDocs/Claude/Projects/JunkGymDigital` (planned) | Not yet built |
-| The Dose | `~/Library/Mobile Documents/com~apple~CloudDocs/Claude/Projects/TheDose` (planned) | Not yet built |
+Each brand has its own folder under [`sites/`](./sites) containing a `README.md` (registry entry) and `CLAUDE.md` (site-specific Claude context).
 
-Full per-site entries live in [`sites/`](./sites).
+| Brand | Folder | Status |
+|---|---|---|
+| Reps & Reels | [`sites/reps-and-reels/`](./sites/reps-and-reels) | Shipped to staging 2026-04-20 |
+| Junk Gym Digital | [`sites/junk-gym-digital/`](./sites/junk-gym-digital) | Not yet built |
+| The Dose | [`sites/the-dose/`](./sites/the-dose) | Not yet built |
 
 ## How to use
 
-- **Starting a new site?** Run the checklist in [`playbooks/new-site-kickoff.md`](./playbooks/new-site-kickoff.md).
-- **Working on an existing site?** The site's `CLAUDE.md` lives in the project folder, not here. Read the global [field guide](./standards/webflow/mcp-field-guide.md) and the local `CLAUDE.md`, in that order.
+- **Any web task** — read order is always: (1) global [field guide](./standards/webflow/mcp-field-guide.md) → (2) the brand's `sites/<brand>/CLAUDE.md` → (3) working files referenced by that CLAUDE.md. See [`SKILL.md`](./SKILL.md).
+- **Starting a new site?** Run the checklist in [`playbooks/new-site-kickoff.md`](./playbooks/new-site-kickoff.md) and populate `sites/<brand>/CLAUDE.md` from [`templates/site-claude-md-template.md`](./templates/site-claude-md-template.md).
 - **Hit a new Webflow quirk?** Add it to [`standards/webflow/mcp-field-guide.md`](./standards/webflow/mcp-field-guide.md) before moving on. That's how the pattern library compounds.
 - **Need to update a standard?** Edit the file, bump [`CHANGELOG.md`](./CHANGELOG.md). See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 

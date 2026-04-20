@@ -17,11 +17,14 @@ This skill applies cross-brand Webflow build discipline. It is the authority on 
 
 ## Read order for any web-build task
 
-Before touching Webflow, read these files in order:
+Always read in this exact order before touching Webflow:
 
-1. **Webflow MCP Field Guide** — `standards/webflow/mcp-field-guide.md`. Non-negotiable. This is the source of all the gotchas, workarounds, and the pre-flight checklist. If you skip this and hit a silent style failure, that's on you.
-2. **The site-specific `CLAUDE.md`** — lives inside the project's site folder (e.g., `Reps and Reels/web/CLAUDE.md`). Contains brand tokens, site IDs, and quirks that override global guidance.
-3. **The site's `source-of-truth.md`** — also in the project folder. Running state: element IDs, asset IDs, inline-style workarounds applied. Read to avoid re-deriving state that's already captured.
+1. **Global: Webflow MCP Field Guide** — `standards/webflow/mcp-field-guide.md`. Non-negotiable. Source of all the gotchas, workarounds, and the pre-flight checklist. If you skip this and hit a silent style failure, that's on you.
+2. **Site-specific: the brand's folder in this repo** — `sites/<brand>/CLAUDE.md` + `sites/<brand>/README.md`. Contains brand tokens, site IDs, and quirks that override global guidance. The available brands are:
+   - `sites/reps-and-reels/` — https://github.com/stephenjhebert-lgtm/web-build-standards/tree/main/sites/reps-and-reels
+   - `sites/junk-gym-digital/` — https://github.com/stephenjhebert-lgtm/web-build-standards/tree/main/sites/junk-gym-digital
+   - `sites/the-dose/` — https://github.com/stephenjhebert-lgtm/web-build-standards/tree/main/sites/the-dose
+3. **Working files in iCloud** (if referenced by the site's CLAUDE.md) — running state, prototype, head-paste source. For Reps & Reels that's `~/Library/Mobile Documents/com~apple~CloudDocs/Claude/Projects/RepsReels/Reps and Reels/web/`.
 4. **`playbooks/new-site-kickoff.md`** — only if this is a new site build. Otherwise skip.
 
 ## Rules
