@@ -1,0 +1,67 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # full history needed for the staleness report
+          fetch-depth: 0
+
+      # Check 1: markdown link check. Fails on broken internal links; warns on external.
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-loopback
+            --exclude 'localhost'
+            --exclude 'example\.com'
+            './**/*.md'
+          fail: true
+
+      # Check 2: SKILL.md frontmatter. Must contain name: and description:.
+      - name: Validate SKILL.md frontmatter
+        run: |
+          set -euo pipefail
+          file="SKILL.md"
+          if [ ! -f "$file" ]; then
+            echo "::error::$file not found"
+            exit 1
+          fi
+          # Frontmatter is the first ---...--- block.
+          fm=$(awk '/^---$/{c++; next} c==1 {print} c==2 {exit}' "$file")
+          echo "$fm" | grep -qE '^name:\s*\S' || { echo "::error::$file frontmatter missing 'name:'"; exit 1; }
+          echo "$fm" | grep -qE '^description:' || { echo "::error::$file frontmatter missing 'description:'"; exit 1; }
+          echo "SKILL.md frontmatter OK"
+
+      # Check 3: staleness report (warnings only, main branch only).
+      - name: Staleness report
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          now=$(date +%s)
+          threshold=$((90 * 24 * 60 * 60))
+          stale=0
+          while IFS= read -r f; do
+            # Skip stubs — they're intentionally frozen until populated.
+            if grep -q '\*\*Status:\*\* stub' "$f"; then
+              continue
+            fi
+            last=$(git log -1 --format=%ct -- "$f" || echo 0)
+            if [ "$last" -eq 0 ]; then continue; fi
+            age=$(( (now - last) / 86400 ))
+            if [ $((now - last)) -gt "$threshold" ]; then
+              echo "::warning file=$f::stale — last touched $age days ago"
+              stale=$((stale + 1))
+            fi
+          done < <(find standards playbooks -type f -name '*.md')
+          echo "stale files flagged: $stale"
