@@ -59,3 +59,53 @@ Add an insight when you learn something that would have changed how you started 
 **Evidence.** `archive/README.md` and the round-by-round folder structure.
 
 **How to apply.** When superseding a draft, move it under `archive/superseded_drafts/` or a dated build folder. Never overwrite in place.
+
+---
+
+### Delete Webflow elements rather than fighting their visibility state
+
+**Claim.** If a Webflow element's display state is managed by the Designer's visibility toggle, `add_or_update_attribute` overrides are reverted on every publish. Deleting the element is the only reliable way to make it permanently gone.
+
+**Evidence.** 2026-04-22 postmortem — three rounds of `.reel__placeholder` display overrides all reverted on publish; `remove_element` resolved it in one call.
+
+**How to apply.** On any future Webflow project: if an element is causing layout interference and its display state is Designer-managed, delete it via `remove_element` rather than trying to toggle it. If the element needs to exist as a fallback, set `opacity:0` on the CSS class via `style_tool` instead — that survives publish.
+
+---
+
+### Webflow MCP has two distinct server families; Designer tools require the UUID-prefixed one
+
+**Claim.** The `mcp__webflow__*` prefix covers REST API tools only. Designer-connected tools (`element_tool`, `whtml_builder`, `de_page_tool`, `style_tool`) only work via the UUID-prefixed MCP server (`mcp__8b1796c5-579c-4abd-b629-6d435e81fc97__*`).
+
+**Evidence.** 2026-04-22 postmortem — Designer tools via named prefix returned "No active Designer app connection" consistently; UUID prefix worked immediately.
+
+**How to apply.** At session start, always use the UUID-prefixed variants for any Designer tool. Use `mcp__webflow__*` only for REST API operations (publish, collections, page metadata). If you see "No active Designer app connection," check the prefix before anything else.
+
+---
+
+### Instagram and TikTok standard embeds always include platform chrome
+
+**Claim.** No URL parameter, embed variant, or CSS offset reliably strips the profile header and action bar from standard IG/TikTok iframes. The chrome is baked into the embed system.
+
+**Evidence.** 2026-04-22 postmortem — multiple cropping approaches failed or degraded embed functionality. Accepted chrome-visible embeds for launch.
+
+**How to apply.** If a client requires chrome-free social video display, spec a third-party aggregator tool (Behold.so for Instagram, similar for TikTok) from the start — do not plan to strip chrome via CSS. This is a platform constraint, not a solvable engineering problem with standard embeds.
+
+---
+
+### Verify Webflow plan CMS access before speccing CMS-dependent features
+
+**Claim.** Webflow Basic plan does not include CMS Collections. Building a CMS-powered feature on Basic will fail at collection creation with a 409.
+
+**Evidence.** 2026-04-22 postmortem — Reels CMS Collection creation returned 409 "Upgrade to CMS Hosting."
+
+**How to apply.** At project kickoff, call `sites_get` and confirm the plan includes CMS before writing any spec that uses Collections. If plan is Basic, design for static hardcoded content from the start (Option B pattern from `reels_embed_spec.md`).
+
+---
+
+### Avoid `calc()` in `whtml_builder` inline styles
+
+**Claim.** CSS `calc()` expressions in inline styles passed through `whtml_builder` are unreliable — they may be stripped or cause unexpected element behavior on publish.
+
+**Evidence.** 2026-04-22 postmortem — `height:calc(100% + 220px)` on iframes caused TikTok embeds to degrade to static preview cards.
+
+**How to apply.** For any sizing that requires `calc()`, add the rule to `webflow_head_paste.html` as a class-level CSS rule instead of using inline styles. Use simple absolute values or percentage-only values in `whtml_builder` inline styles.
