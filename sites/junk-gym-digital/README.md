@@ -1,11 +1,8 @@
 # Junk Gym Digital
 
-- **Project folder:** [to fill in]
-- **Local CLAUDE.md:** [to fill in]
-- **Local source-of-truth:** [to fill in]
-- **Webflow site ID:** [to fill in]
-- **Status:** Not yet built
-- **Last updated:** 2026-04-20
-
-## Build notes
-- CLAUDE.md will be created when site build begins.
+- **Project folder:** iCloud/Claude/Projects/Junk Gym Marketing/site-mvp/
+- **Webflow site ID:** 68ad03867bd00372bd73e906
+- **Staging URL:** https://junk-gym-email-marketing.webflow.io
+- **Custom domain:** junkgym.com (DNS not connected)
+- **Status:** Active build — contact page missing, launch blockers listed in CLAUDE.md
+- **Last updated:** 2026-04-22
