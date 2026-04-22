@@ -62,19 +62,21 @@
 
 ## Site scripts (registered inline, auto-applied)
 
-| Script name | Location | Purpose | Status |
+Scripts were cleaned up 2026-04-22. All live scripts are v2.0.0. Legacy v1.0.0 scripts remain registered but are not applied — cosmetic cleanup only, no site impact.
+
+| Script ID | Location | Version | Status |
 |---|---|---|---|
-| jgd_base_css | head | Fonts + design tokens + reset | Live |
-| jgd_tracking | footer | CTA/mailto click tracking | Live (no-op until GA4 added) |
-| jgd_schema_jsonld | head | ProfessionalService JSON-LD (old — has NH address) | NEEDS DELETION |
-| jgd_meta_complete | head | lang, canonical, OG, twitter | Live |
-| jgd_person_schema | head | Person JSON-LD (country-only) | Live |
-| jgd_services_schema | head | Services JSON-LD with prices | Live |
-| jgdFaqSchema | head | FAQPage JSON-LD | Live |
+| jgd_base_css_2 | header | 2.0.0 | Live |
+| jgd_tracking_2 | footer | 2.0.0 | Live |
+| jgd_meta_complete_2 | header | 2.0.0 | Live |
+| jgd_person_schema_2 | header | 2.0.0 | Live |
+| jgd_services_schema_2 | header | 2.0.0 | Live |
+| jgdfaqschema_2 | header | 2.0.0 | Live |
+| jgd_schema_jsonld | — | 1.0.0 | Registered only, NOT applied — delete from registry when convenient |
 
 ## Open HITL queue (Steve must complete before launch)
 
-- [ ] Create `/contact` page in Webflow Designer (MCP can't create pages)
+- [ ] Create `/contact` page in Webflow Designer (MCP can't create pages — Designer app must be open)
 - [ ] Build Tally form → get form ID → replace `{{TALLY_FORM_ID}}` in contact embed
 - [ ] Provision GA4 property → replace `{{GA4_MEASUREMENT_ID}}` in jgd_ga4 script
 - [ ] Add site to Google Search Console → replace `{{GSC_VERIFICATION_STRING}}`
@@ -83,9 +85,9 @@
 - [ ] Upload Steve's headshot → wire into §05 About section (replaces placeholder tile)
 - [ ] Paste robots.txt in Project Settings → SEO (text in HANDOFF-2026-04-20.md)
 - [ ] Toggle sitemap auto-generation ON in Project Settings → SEO
-- [ ] Delete `jgd_schema_jsonld` script (has NH address — replaced by jgd_person_schema)
 - [ ] Connect junkgym.com custom domain in Project Settings → Hosting
 - [ ] Explicit go-ahead publish to production
+- [x] ~~Delete `jgd_schema_jsonld` script~~ — Done 2026-04-22 (replaced by jgd_person_schema_2 + jgd_services_schema_2)
 
 ## Known inline-style workarounds
 
