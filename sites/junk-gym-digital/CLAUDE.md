@@ -77,6 +77,8 @@ Scripts bumped to v2.0.1 on 2026-04-22 after delete-all + re-register cycle (nee
 
 `jgd_contact_meta_2` is page-level only (applied to /contact, not site-wide).
 
+`jgd_headshot_2` v2.0.1 adds `!important` to override a corrupted Webflow-stored inline style on `.jgd-photo-img` (artifact of using `add_or_update_attribute` with a URL value — Webflow's CSS parser truncates at `:`). The v2.0.0 script remains applied but is overridden.
+
 | Script ID | Location | Version | Status |
 |---|---|---|---|
 | jgd_base_css_2 | header | 2.0.1 | Live (site-wide) |
@@ -86,6 +88,9 @@ Scripts bumped to v2.0.1 on 2026-04-22 after delete-all + re-register cycle (nee
 | jgd_services_schema_2 | header | 2.0.1 | Live (site-wide) |
 | jgdfaqschema_2 | header | 2.0.1 | Live (site-wide) |
 | jgd_contact_meta_2 | header | 2.0.0 | Live (page-level: /contact only) |
+| jgd_headshot_2 | header | 2.0.1 | Live (site-wide) — `!important` override fixes corrupted inline style; v2.0.0 also registered but superseded |
+| jgd_no_email | footer | 1.0.0 | Live (site-wide) — removes all mailto links + hero/final/footer email CTAs from DOM |
+| jgd_privacy | footer | 1.0.0 | Live (site-wide) — replaces all client company names with generic terms; removes [ KAY ] and [ PEOPLES ] trust tokens; patches FAQ JSON-LD in-place |
 | jgd_schema_jsonld | — | 1.0.0 | Registered only, NOT applied — delete from registry when convenient |
 
 ## Open HITL queue (Steve must complete before launch)
@@ -96,7 +101,7 @@ Scripts bumped to v2.0.1 on 2026-04-22 after delete-all + re-register cycle (nee
 - [ ] Add site to Google Search Console → replace `{{GSC_VERIFICATION_STRING}}`
 - [ ] Upload OG image (1200×630 PNG) to Webflow Asset Manager → update og:image references
 - [ ] Upload favicon set + Apple touch icon → Project Settings → Favicon
-- [ ] Upload Steve's headshot → wire into §05 About section (replaces placeholder tile)
+- [x] ~~Upload Steve's headshot~~ — Done 2026-04-22 (SH.png → Webflow CDN, wired via jgd_headshot_2 script; v2.0.1 fixes corrupted inline style override)
 - [ ] Paste robots.txt in Project Settings → SEO (text in HANDOFF-2026-04-20.md)
 - [ ] Toggle sitemap auto-generation ON in Project Settings → SEO
 - [ ] Connect junkgym.com custom domain in Project Settings → Hosting
@@ -114,4 +119,5 @@ Scripts bumped to v2.0.1 on 2026-04-22 after delete-all + re-register cycle (nee
 - 2026-04-19: Full homepage build (8 sections) via Claude Code + Webflow MCP
 - 2026-04-20: SEO + AI discoverability audit; 5 additional scripts registered
 - 2026-04-22 (session 1): Pre-launch session — script cleanup, contact page attempt (blocked), integration audit, QA pass, launch readiness report
-- 2026-04-22 (session 2): Contact page built and live — nav, §07 framing, form section (Tally placeholder), fallback block, footer; jgd_contact_meta_2 registered page-level; scripts bumped to v2.0.1 to fix double-load bug
+- 2026-04-22 (session 2): Contact page built and live — nav, §07 framing, form section (Tally placeholder), fallback block, footer; jgd_contact_meta_2 registered page-level; scripts bumped to v2.0.1 to fix double-load bug; SH.png uploaded and wired into About section via jgd_headshot_2 script
+- 2026-04-22 (session 3): Fixed profile photo (jgd_headshot_2 v2.0.1 with !important overrides corrupted inline style); removed all email addresses from public site via jgd_no_email script; replaced all client company names (MegaFood, Signet, Kay, Peoples, OmegAmino) with generic industry terms via jgd_privacy script; updated llms.txt + llms-full.txt to match
