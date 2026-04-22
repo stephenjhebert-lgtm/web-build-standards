@@ -1,6 +1,6 @@
 # CLAUDE.md — Junk Gym Digital
 
-**Status:** Active build — staging live, production not yet connected
+**Status:** Live — junkgym.com connected and published to production 2026-04-22
 **Last updated:** 2026-04-22
 
 ---
@@ -104,8 +104,8 @@ Scripts bumped to v2.0.1 on 2026-04-22 after delete-all + re-register cycle (nee
 - [x] ~~Upload Steve's headshot~~ — Done 2026-04-22 (SH.png → Webflow CDN, wired via jgd_headshot_2 script; v2.0.1 fixes corrupted inline style override)
 - [ ] Paste robots.txt in Project Settings → SEO (text in HANDOFF-2026-04-20.md)
 - [ ] Toggle sitemap auto-generation ON in Project Settings → SEO
-- [ ] Connect junkgym.com custom domain in Project Settings → Hosting
-- [ ] Explicit go-ahead publish to production
+- [x] ~~Connect junkgym.com custom domain in Project Settings → Hosting~~ — Done 2026-04-22
+- [x] ~~Explicit go-ahead publish to production~~ — Done 2026-04-22 (manually by Steve)
 - [x] ~~Delete `jgd_schema_jsonld` script~~ — Done 2026-04-22 (replaced by jgd_person_schema_2 + jgd_services_schema_2)
 
 ## Known inline-style workarounds
