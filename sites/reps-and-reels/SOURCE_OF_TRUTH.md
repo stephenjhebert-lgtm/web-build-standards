@@ -1,6 +1,7 @@
 # Reps & Reels — Site Source of Truth
 
 **Locked:** 2026-04-20
+**Live:** 2026-04-22 — published to `repsreels.com`
 **Staging:** `repsreels.webflow.io` (Webflow subdomain)
 **Webflow site ID:** `6932246fda6d6f12bcacc35f`
 **Home component ID:** `69322470da6d6f12bcacc3bb`
@@ -19,9 +20,9 @@ This document is the authoritative reference for the shipped homepage. If Webflo
 4. **Brass marquee strip** — scrolling: TRAIN · MUSIC · DISCIPLINE · QUIET WORK WINS · IRON & REEDS
 5. **Stats band** — 20+ Years Under The Bar · 5 Years On The Chanter · 3 Daughters Watching (oxblood numerals)
 6. **Voice (01 / The Premise)** — paragraph + oxblood-bordered cornerstone quote
-7. **Reels (02 / The Feed)** — 6-card grid of placeholder reel tiles (IG + TT captions)
+7. **Reels (02 / The Feed)** — 6-card grid with live IG + TT iframe embeds. Static hardcoded (no CMS — Basic plan). Cards 1,3,6 = Instagram; cards 2,4,5 = TikTok. Platform chrome (profile header/footer) is visible by design — chrome-free display requires a third-party aggregator.
 8. **About (03 / Origin)** — bio paragraphs with oxblood "One person." accent
-9. **Contact (04 / Contact)** — `hello@repsreels.com` + Omnisend newsletter placeholder block
+9. **Contact (04 / Contact)** — `hello@repsreels.com` + Omnisend newsletter embed (brandID `6936e4da3950b25940f8c404`, form ID `6936e737358594711bbb5ed0`)
 10. **Footer** — brass crest mark + "Quiet Work Wins." tagline + IG/TT + email + copyright
 
 ### Hero H1 (locked copy)
@@ -115,9 +116,9 @@ A dedicated `.hero__atmosphere` div sits behind the crest with a stacked multi-r
 
 These are known gaps that have been explicitly deferred. They are captured in the integration punch list (see `IG_TT_INTEGRATION.md`) or will be handled separately.
 
-- **Live IG/TT reel embeds** — currently 6 `[ Reel embed ]` placeholder cards. Need content picks + embed code.
-- **Omnisend newsletter form** — placeholder block only. Needs form embed code from Omnisend account.
-- **Custom domain** — staging is on `.webflow.io`; `repsreels.com` not yet pointed.
+- **Reel embed chrome** — platform UI (profile header, action bar) visible on all 6 embed cards. Acceptable for launch; chrome-free requires Behold.so or similar aggregator.
+- **TikTok loop** — `?loop=1` parameter is undocumented in v2 embed and caused embeds to degrade to preview cards when tested; not used. Related videos may appear after playback ends.
+- **Custom domain** — pointed and live at `repsreels.com` as of 2026-04-22.
 - **Stickers / tattoo crest variant** — open request from the 2026-04-20 audit (items A–E in `archive/2026-04-20_audit/audit_2026-04-20.md`).
 - **Additional pages** — homepage is the only page. Future: `/about`, `/posts/`, `/licenses` exist as Webflow page templates but are not yet wired.
 
@@ -159,3 +160,4 @@ These are known gaps that have been explicitly deferred. They are captured in th
 | 2026-04-19 | Initial build, rounds 1–7. Multiple QA passes. (See `archive/2026-04-19_build/`.) |
 | 2026-04-20 (AM) | Audit flagged: too dark, logo too small, hook bland, brand mark unclear. Prototype rebuilt. Round 8 redesign prompt written. (See `archive/2026-04-20_audit/`.) |
 | 2026-04-20 (PM) | Redesign applied in Webflow: crest-forward hero, brass marquee, oxblood accents, stats band, personal about copy. Mobile responsive pass: nav shrink, hero column stack, crest sized to fill. Nav + footer marks swapped to `RRbrass_alpha.png`. **Locked as source of truth.** |
+| 2026-04-22 | **Site went live.** Published to `repsreels.com`. Social embeds wired (6 static iframes, Basic plan — no CMS). Omnisend form live. OG image set (logo on cream bg, 1200×630). SEO: title, description, canonical, sitemap indexing all confirmed. Key MCP workarounds documented in `POSTMORTEMS.md` and `KEY_INSIGHTS.md`. |
