@@ -1,9 +1,10 @@
 # Reps & Reels — Launch Checklist
-**Stream B3 deliverable** — 2026-04-19
-**Scope:** the path from "HTML prototype approved" → "new site is live at repsreels.com" with no regressions in SEO, no broken DNS, and Lighthouse ≥85 on mobile.
-**Assumption:** host stays Webflow. HTML prototype is the approval artifact, Webflow build is the production artifact.
+**COMPLETED: 2026-04-22** — Site is live at `repsreels.com`.
+
+> **Post-launch notes:** CMS plan (Basic) required static hardcoded embeds instead of CMS Collections. See `POSTMORTEMS.md` (2026-04-22 entries) and `KEY_INSIGHTS.md` for Webflow MCP workarounds documented during launch. Several Phase 2 QA items and Phase 4 post-launch items remain to be completed.
 
 ---
+
 
 ## 0. Phases at a glance
 
